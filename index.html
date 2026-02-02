@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleverTap Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var clevertap = { 
+            event: [], 
+            profile: [], 
+            account: [], 
+            onUserLogin: [], 
+            region: 'eu1', 
+            notifications: [], 
+            privacy: [] 
+        };
+        
+        clevertap.account.push({ "id": "449-8KZ-7W7Z" });
+        clevertap.privacy.push({ optOut: false });
+        clevertap.privacy.push({ useIP: true });
+        
+        (function () {
+            var wzrk = document.createElement('script');
+            wzrk.type = 'text/javascript';
+            wzrk.async = true;
+            wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wzrk, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <h2>CleverTap Event Test</h2>
+    
+    <button onclick="trackBlackcarrot()">Track Blackcarrot URL</button>
+    <button onclick="trackRoot()">Track Root URL</button>
+
+    <script>
+        function trackBlackcarrot() {
+            clevertap.event.push("Page Browsed", {
+                "URL": "https://www.blackcarrot.in/"
+            });
+            console.log("Event sent: Blackcarrot URL");
+            alert("Blackcarrot URL event sent!");
+        }
+
+        function trackRoot() {
+            clevertap.event.push("Page Browsed", {
+                "URL": "/"
+            });
+            console.log("Event sent: Root URL");
+            alert("Root URL event sent!");
+        }
+    </script>
+</body>
+</html>
